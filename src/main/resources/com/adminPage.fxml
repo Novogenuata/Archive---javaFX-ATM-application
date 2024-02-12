@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="633.0" prefWidth="846.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.AdminController">
+   <children>
+      <TextField fx:id="nomField" layoutX="348.0" layoutY="53.0" promptText="Nom" />
+      <TextField fx:id="prenomField" layoutX="348.0" layoutY="91.0" promptText="Prénom" />
+      <TextField fx:id="telephoneField" layoutX="349.0" layoutY="126.0" promptText="Téléphone" />
+      <TextField fx:id="courrielField" layoutX="348.0" layoutY="161.0" promptText="Courriel" />
+      <TextField fx:id="nipField1" layoutX="349.0" layoutY="195.0" promptText="NIP" />
+
+      <Button layoutX="437.0" layoutY="230.0" mnemonicParsing="false" onAction="#creerClient" text="Créer Client" />
+      <Button layoutX="330.0" layoutY="230.0" mnemonicParsing="false" onAction="#reinitialiserInformations" text="Réinitialiser" />
+      <Label layoutX="341.0" layoutY="14.0" text="Création d'un client">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="306.0" layoutY="292.0" prefHeight="166.0" prefWidth="254.0" style="-fx-background-color: #B2EBF2;">
+         <children>
+            <Label layoutX="26.0" layoutY="14.0" text="Création d'un compte">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="codeClientField" layoutX="50.0" layoutY="42.0" promptText="Code client" />
+            <Button layoutX="129.0" layoutY="122.0" mnemonicParsing="false" onAction="#creerCompte" text="Créer Compte" />
+            <Button layoutX="20.0" layoutY="121.0" mnemonicParsing="false" onAction="#reinitialiserInformations" text="Réinitialiser" />
+            <RadioButton fx:id="HypoToggle" layoutX="53.0" layoutY="75.0" mnemonicParsing="false" onAction="#selectionnerCompte" text="Hypothecaire" toggleGroup="$Accounts2">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Accounts2" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="MargeToggle" layoutX="54.0" layoutY="93.0" mnemonicParsing="false" onAction="#selectionnerCompte" text="Marge" toggleGroup="$Accounts2" />
+            <RadioButton fx:id="EpargneToggle" layoutX="156.0" layoutY="75.0" mnemonicParsing="false" onAction="#selectionnerCompte" text="Epargne" toggleGroup="$Accounts2" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1.0" layoutY="278.0" prefHeight="200.0" prefWidth="254.0" style="-fx-background-color: #C8E6C9;">
+         <children>
+            <Label layoutX="60.0" layoutY="36.0" text="Bloquer l'acces">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nipField" layoutX="52.0" layoutY="74.0" promptText="Numero NIP" />
+            <Button fx:id="bloquerButton" layoutX="14.0" layoutY="116.0" onAction="#bloquerClient" text="Bloquer Client" />
+            <Button fx:id="debloquerButton" layoutX="127.0" layoutY="116.0" onAction="#debloquerClient" text="Débloquer Client" />
+
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="14.0" layoutY="545.0" prefHeight="150.0" prefWidth="242.0" style="-fx-background-color: #F8BBD0;">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" text="Prélevement de montant">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="montantPrelevementField" layoutX="33.0" layoutY="75.0" promptText="Montant à prélever" />
+            <Button layoutX="65.0" layoutY="110.0" onAction="#preleverMontant" text="Retirer Montant" />
+            <TextField fx:id="CodeClientPrelevement" layoutX="33.0" layoutY="49.0" promptText="Code Client" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="583.0" layoutY="28.0" prefHeight="586.0" prefWidth="200.0" style="-fx-background-color: #D1C4E9;">
+         <children>
+            <AnchorPane prefHeight="730.0" prefWidth="208.0">
+               <children>
+                  <Label layoutX="48.0" layoutY="14.0" text="Transactions">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="codeClientTransactionField" layoutX="26.0" layoutY="42.0" promptText="Code Client" />
+                  <Button layoutX="26.0" layoutY="135.0" mnemonicParsing="false" onAction="#transaction" prefHeight="26.0" prefWidth="150.0" text="ok" />
+                  <AnchorPane layoutY="223.0" prefHeight="390.0" prefWidth="254.0" style="-fx-background-color: cyan;">
+
+                  <children>
+                     <ListView fx:id="transactionsListView" layoutX="10.0" layoutY="300.0" prefHeight="200.0" prefWidth="300.0" />
+
+                     <ListView fx:id="clientsListView" layoutY="236.0" prefHeight="264.0" prefWidth="318.0" />
+                        <ListView fx:id="comptesListView" layoutX="-1.0" layoutY="1.0" prefHeight="236.0" prefWidth="318.0" />
+                     </children>
+                  </AnchorPane>
+                  <RadioButton fx:id="RadDepot" layoutX="26.0" layoutY="77.0" mnemonicParsing="false" text="Depots">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="TransactionType" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="RadTransactions" layoutX="27.0" layoutY="95.0" mnemonicParsing="false" text="Transferts" toggleGroup="$TransactionType" />
+                  <RadioButton fx:id="RadRetraits" layoutX="26.0" layoutY="113.0" mnemonicParsing="false" text="Retraits" toggleGroup="$TransactionType" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="283.0" layoutY="458.0" prefHeight="299.0" prefWidth="300.0" style="-fx-background-color: #FFCCBC;">
+         <children>
+            <Label layoutX="89.0" layoutY="41.0" text="Maintenance">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Button layoutX="14.0" layoutY="203.0" onAction="#fermerGuichet" text="Fermer le guichet" />
+            <Button layoutX="78.0" layoutY="150.0" mnemonicParsing="false" onAction="#ajouterArgent" prefHeight="28.0" prefWidth="130.0" text="Ajouter de l'argent" />
+            <Button fx:id="seDeconnecterButton" layoutX="169.0" layoutY="203.0" onAction="#seDeconnecter" text="Se Déconnecter" />
+            <TextField fx:id="montantAjoutField" layoutX="68.0" layoutY="111.0" promptText="Montant à ajouter" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="24.0" layoutY="26.0" prefHeight="214.0" prefWidth="254.0" style="-fx-background-color: red;">
+         <children>
+            <Button fx:id="augmentmarge" layoutX="39.0" layoutY="56.0" mnemonicParsing="false" onAction="#augmenterSoldeMarge" prefHeight="28.0" prefWidth="180.0" text="Augmenter Solde Marge" />
+            <Button layoutX="39.0" layoutY="126.0" mnemonicParsing="false" onAction="#paiementInteret" prefHeight="28.0" prefWidth="180.0" text="Paiement des Intérêts" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
